@@ -1,0 +1,42 @@
+﻿@page
+@model DietStore.Pages.Purchase.BagModel
+@{
+    ViewData["Title"] = "Bag";
+}
+
+<h2>In your Bag</h2>
+
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Price</th><th>Number</th><th></th><th colspan="3">Total</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var purchase in Model.Purchases)
+        {
+            <tr>
+                <td>@purchase.NameOfPurchase</td>
+                <td> @purchase.Price </td>
+                <td>
+                    <form method="post">
+                        <button type="submit" asp-page-handler="additem" asp-route-id="@purchase.Id">+</button>
+                        <a>@purchase.NumberOfItems</a>
+                        <button type="submit" asp-page-handler="substractitem" asp-route-id="@purchase.Id">-</button>
+                    </form>
+                </td>
+                <td>
+                    <form method="Post">
+                        <button type="submit" asp-page-handler="delete" asp-route-id="@purchase.Id">Delete</button>
+                    </form>
+                </td>
+                <td></td>
+
+            </tr>
+        }
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total Sum : @Model.TotalSum</td>
+            </tr>
+    </tbody>
+</table>

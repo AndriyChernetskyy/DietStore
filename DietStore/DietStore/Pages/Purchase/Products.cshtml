@@ -1,0 +1,27 @@
+﻿@page 
+@model DietStore.Pages.Purchase.ProductsModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h2>All products available : </h2>
+<table class="table">
+    <thead>
+        <tr><th>Name</th><th>Decription</th><th>Price</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.products)
+        {
+        <tr>
+            <td>@product.Name</td>
+            <td>@product.Description</td>
+            <td> @product.Price </td>
+            <td>
+                <form method="Post">
+                    <button type="submit" asp-route-id = "@product.Id" asp-page="AddToBag">Add to Bag</button>
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
